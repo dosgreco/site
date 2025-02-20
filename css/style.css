@@ -210,9 +210,11 @@ footer {
     color: white;
     text-decoration: none;
     font-size: 1.2rem;
+    line-height: 1.2rem;
     display: flex;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
+    gap: 5px;
     padding: 8px 16px;
     border-radius: 25px;
     background-color: rgba(0, 0, 0, 0.5);
@@ -226,8 +228,9 @@ footer {
 }
 
 .nav-icon {
-    width: 24px;
-    height: 24px;
+  width: 24px;
+  height: 24px;
+  display: inline-block;
 }
 
 .cardapio-link {
