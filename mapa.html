@@ -94,7 +94,7 @@
 </head>
 <body>
   <div style="text-align:center; margin-bottom:10px;">
-    <input type="text" id="cep" placeholder="Seu CEP">
+    <input type="text" id="cep" placeholder="Pesquise">
     <button id="searchBtn">Buscar</button>
   </div>
   <div id="map"></div>
@@ -107,7 +107,7 @@
 
     document.addEventListener('DOMContentLoaded', function() {
       // Inicializa o mapa com estilo minimalista (CartoDB Positron)
-      var map = L.map('map').setView([-30, -53], 5);
+      var map = L.map('map').setView([-30, -53], 6);
       L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { 
         attribution: '&copy; OpenStreetMap &copy; CARTO'
       }).addTo(map);
@@ -130,6 +130,22 @@
 
       // Array para armazenar marcadores (para limpar quando necessário)
       var markers = [];
+
+      // Adiciona todos os pontos no carregamento inicial
+      clientPoints.forEach(function(point) {
+        if (point.latitude && point.longitude) {
+          var marker = L.marker([parseFloat(point.latitude), parseFloat(point.longitude)], { icon: customIcon })
+            .addTo(map)
+            .bindPopup(
+              "<strong>" + point['Nome Fantasia / Nome Abreviado'] + "</strong><br>"  +
+              "<i>Endereço:</i> " + point['Endereço'] + "<br>" +
+              "<i>Bairro:</i> " + point['Bairro'] + "<br>" + 
+              "<i>Telefone:</i> " + point['Telefone'] + "<br>"
+            );
+          markers.push(marker);
+        }
+      });
+
       function clearMarkers() {
         markers.forEach(function(marker) {
           map.removeLayer(marker);
@@ -141,18 +157,18 @@
       document.getElementById('searchBtn').addEventListener('click', function() {
         var cep = document.getElementById('cep').value.trim();
         if (!cep) {
-          alert("Por favor, digite um CEP válido.");
+          alert("Por favor, digite um endereço válido.");
           return;
         }
         
         // Endpoint para geocodificar o CEP (substitua pelo seu endpoint se necessário)
-        var url = 'https://api-mapa-pao-az2jx74p6a-uc.a.run.app/cep?cep=' + encodeURIComponent(cep);
+        var url = 'https://api-mapa-pao-az2jx74p6a-uc.a.run.app/busca_endereco?endereco=' + encodeURIComponent(cep);
         
         fetch(url)
           .then(response => response.json())
           .then(data => {
             if (!data || !data.latitude || !data.longitude) {
-              alert("CEP not found.");
+              alert("Endereço não encontrado");
               return;
             }
             
@@ -166,7 +182,7 @@
             
             // Adiciona marcador para a localização do CEP usando o ícone minimalista.
             var cepMarker = L.marker([lat, lon], { icon: cepIcon }).addTo(map)
-              .bindPopup("CEP: " + cep + "<br>" + data.formatted_address);
+              .bindPopup("Pesquisa: " + cep + "<br>" + data.formatted_address);
             markers.push(cepMarker);
             
             // A helper function to normalize city names (remove parentheses and trim spaces)
@@ -194,10 +210,10 @@
                 markers.push(marker);
               });
             } else {
-              // Se nenhum ponto for encontrado, exibe popup informativo.
+              // Se nenhum ponto for encontrado, exibe popup informativo com link para WhatsApp
               L.popup()
                 .setLatLng([lat, lon])
-                .setContent("Desculpe, não há pontos de venda próximos a este CEP. Entre em contato!")
+                .setContent("Desculpe, não há pontos de venda próximos a este endereço. <a href='https://wa.me/+5551999052250' target='_blank' style='color: #25D366; text-decoration: underline;'>Entre em contato!</a>")
                 .openOn(map);
             }
           })
