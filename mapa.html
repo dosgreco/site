@@ -162,7 +162,7 @@
         }
         
         // Endpoint para geocodificar o CEP (substitua pelo seu endpoint se necessário)
-        var url = 'https://api-mapa-pao-az2jx74p6a-uc.a.run.app/busca_endereco?endereco=' + encodeURIComponent(cep) + ' brazil';
+        var url = 'https://api-mapa-pao-az2jx74p6a-uc.a.run.app/busca_endereco?endereco=' + encodeURIComponent(cep);
         
         fetch(url)
           .then(response => response.json())
