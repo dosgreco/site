@@ -120,16 +120,17 @@
         var form = this;
         var nome = document.getElementById('nome').value.trim();
         var telefone = document.getElementById('telefone').value.trim();
-        var msg = encodeURIComponent('Buenas! Gostaria de mais informações para realizar o meu evento.');
-        var url = 'https://wa.me/+5551999052250?text=' + msg;
-        // Envia o formulário para o Google Forms via iframe
-        var iframe = document.getElementById('hidden_iframe');
-        // Cria um callback para redirecionar após o envio
-        iframe.onload = function() {
+        
+        // Envia o formulário para o Google Forms
+        fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form)
+        }).then(function() {
+            // Após enviar, redireciona para o WhatsApp
+            var msg = encodeURIComponent('Buenas! Gostaria de mais informações para realizar o meu evento.');
+            var url = 'https://wa.me/5551999052250?text=' + msg;
             window.location.href = url;
-            iframe.onload = null;
-        };
-        form.submit();
+        });
     });
     </script>
     <script>
