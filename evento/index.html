@@ -117,20 +117,21 @@
     <script>
     document.getElementById('orcamentoForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        var form = this;
-        var nome = document.getElementById('nome').value.trim();
-        var telefone = document.getElementById('telefone').value.trim();
-        
-        // Envia o formulário para o Google Forms
-        fetch(form.action, {
+
+        // Constrói a URL do WhatsApp ANTES que o gesto "esfrie"
+        const msg = encodeURIComponent('Buenas! Gostaria de mais informações para realizar o meu evento.');
+        const zap = `https://wa.me/5551999052250?text=${msg}`;
+
+        // Dispara o POST em segundo plano
+        fetch(this.action, {
             method: 'POST',
-            body: new FormData(form)
-        }).then(function() {
-            // Após enviar, redireciona para o WhatsApp
-            var msg = encodeURIComponent('Buenas! Gostaria de mais informações para realizar o meu evento.');
-            var url = 'https://wa.me/5551999052250?text=' + msg;
-            window.location.href = url;
+            body: new FormData(this),
+            mode: 'no-cors',
+            keepalive: true  // garante que o envio continue mesmo após a navegação
         });
+
+        // Navega ainda dentro do mesmo clique/touch
+        window.location.href = zap;
     });
     </script>
     <script>
