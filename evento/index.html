@@ -10,7 +10,8 @@
     <style>
         body {
             min-height: 100vh;
-            background: url('../images/IMG_7703.jpg') center center/cover no-repeat fixed; 
+            background: url('../images/IMG_7703.jpg') center center/cover no-repeat fixed;
+            /* Troque 'placeholder-bg.jpg' pela sua imagem */
         }
         .landing-content {
             width: 100%;
@@ -125,10 +126,7 @@
         var iframe = document.getElementById('hidden_iframe');
         // Cria um callback para redirecionar após o envio
         iframe.onload = function() {
-            window.open(url, '_blank');
-            // Opcional: mostrar mensagem de sucesso
-            // alert('Orçamento enviado com sucesso! Você será redirecionado para o WhatsApp.');
-            // Limpa o callback para evitar múltiplos disparos
+            window.location.href = url;
             iframe.onload = null;
         };
         form.submit();
