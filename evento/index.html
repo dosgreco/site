@@ -1,1 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evento</title>
+    <meta name="description" content="Solicite um orçamento dos produtos Dos Greco de forma rápida e fácil.">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        body {
+            min-height: 100vh;
+            background: url('../images/IMG_7703.jpg') center center/cover no-repeat fixed;
+            /* Troque 'placeholder-bg.jpg' pela sua imagem */
+        }
+        .landing-content {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-top: 30px;
+            padding-left: 12px;
+            padding-right: 12px;
+        }
+        .landing-title {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-align: center;
+            color: #fff;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+        }
+        .landing-subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 16px;
+            text-align: center;
+            color: #fff;
+            text-shadow: 1px 1px 6px rgba(0,0,0,0.4);
+        }
+        .form-section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .orcamento-form {
+            background: rgba(0,0,0,0.7);
+            padding: 32px 24px;
+            border-radius: 12px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+            max-width: 350px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        .orcamento-form label {
+            font-size: 1.5rem;
+            margin-bottom: -3px;
+        }
+        .orcamento-form input {
+            padding: 10px;
+            border-radius: 6px;
+            border: none;
+            font-size: 1rem;
+            width: 100%;
+            box-sizing: border-box;
+            font-family: inherit;
+            background: #fff;
+            outline: none;
+            box-shadow: none;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            min-width: 0;
+            max-width: 100%;
+        }
+        .orcamento-form button {
+            background: #25d366;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 12px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .orcamento-form button:hover {
+            background: #128c7e;
+        }
+        @media (max-width: 500px) {
+            .landing-content { max-width: 98vw; padding-top: 30px; padding-left: 4vw; padding-right: 4vw; }
+            .orcamento-form { padding: 18px 6px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="landing-content">
+        <div class="landing-title">
+            <img src="../images/logo.png" alt="Logo Dos Greco" style="max-width: 130px; width: 100%; height: auto; display: block; margin: 0 auto;">
+        </div>
+        <div class="landing-subtitle">Solicite um orçamento personalizado para o seu evento</div>
+        <section class="form-section">
+            <form class="orcamento-form" id="orcamentoForm" autocomplete="off" method="POST" action="https://docs.google.com/forms/d/e/1FAIpQLSeM9IUGkU1GoQHqCNU2itYlOEPx3KI14bz1bM7XT3-I4Y4y6A/formResponse" target="hidden_iframe">
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" name="entry.1130672265" placeholder="Seu nome" required>
+                <label for="telefone">Telefone</label>
+                <input type="tel" id="telefone" name="entry.377092704" placeholder="(XX) XXXXX-XXXX" required pattern="[0-9 ()+-]{10,16}">
+                <button type="submit">Fale conosco</button>
+            </form>
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+        </section>
+    </div>
+    <script>
+    document.getElementById('orcamentoForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        var form = this;
+        var nome = document.getElementById('nome').value.trim();
+        var telefone = document.getElementById('telefone').value.trim();
+        var msg = encodeURIComponent('Buenas! Gostaria de mais informações para realizar o meu evento.');
+        var url = 'https://wa.me/5551999001821?text=' + msg;
+        // Envia o formulário para o Google Forms via iframe
+        var iframe = document.getElementById('hidden_iframe');
+        // Cria um callback para redirecionar após o envio
+        iframe.onload = function() {
+            window.open(url, '_blank');
+            // Opcional: mostrar mensagem de sucesso
+            // alert('Orçamento enviado com sucesso! Você será redirecionado para o WhatsApp.');
+            // Limpa o callback para evitar múltiplos disparos
+            iframe.onload = null;
+        };
+        form.submit();
+    });
+    </script>
+    <script>
+    const telInput = document.getElementById('telefone');
+    let lastValue = telInput.value;
 
+    telInput.addEventListener('keydown', function(e) {
+        lastValue = telInput.value;
+    });
+
+    telInput.addEventListener('input', function (e) {
+        let input = e.target;
+        let value = input.value.replace(/\D/g, '');
+        if (value.length > 11) value = value.slice(0, 11);
+
+        // Detecta se o usuário apagou um caractere de máscara
+        if (lastValue.length > input.value.length) {
+            let pos = input.selectionStart;
+            if (input.value[pos - 1] === '-' || input.value[pos - 1] === ')') {
+                value = value.slice(0, -1);
+            }
+        }
+
+        let formatted = '';
+        if (value.length > 6) {
+            formatted = value.replace(/^(\d{2})(\d{5})(\d{0,4}).*/, '($1) $2-$3');
+        } else if (value.length > 2) {
+            formatted = value.replace(/^(\d{2})(\d{0,5})/, '($1) $2');
+        } else if (value.length > 0) {
+            formatted = value.replace(/^(\d{0,2})/, '($1');
+        }
+
+        // Salva a posição do cursor
+        let pos = input.selectionStart;
+        let oldLength = input.value.length;
+
+        input.value = formatted.trim();
+
+        // Calcula nova posição do cursor
+        let newLength = input.value.length;
+        pos = pos + (newLength - oldLength);
+
+        input.setSelectionRange(pos, pos);
+    });
+    </script>
+</body>
+</html> 
