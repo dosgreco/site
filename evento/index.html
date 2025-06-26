@@ -7,100 +7,581 @@
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-PQ7G5FS');</script>
-    <!-- End Google Tag Manager -->
+    <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Evento</title>
     <meta name="description" content="Solicite um orçamento dos produtos Dos Greco de forma rápida e fácil.">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
     <style>
         body {
             min-height: 100vh;
             background: url('../images/IMG_7703.jpg') center center/cover no-repeat fixed;
-            /* Troque 'placeholder-bg.jpg' pela sua imagem */
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
         }
-        .landing-content {
-            width: 100%;
-            max-width: 400px;
-            margin: 0 auto;
+        
+        .main-container {
+            min-height: 100vh;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding-top: 30px;
-            padding-left: 12px;
-            padding-right: 12px;
-        }
-        .landing-title {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            text-align: center;
-            color: #fff;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-        }
-        .landing-subtitle {
-            font-size: 1.8rem;
-            margin-bottom: 16px;
-            text-align: center;
-            color: #fff;
-            text-shadow: 1px 1px 6px rgba(0,0,0,0.4);
-        }
-        .form-section {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        .orcamento-form {
-            background: rgba(0,0,0,0.7);
-            padding: 32px 24px;
-            border-radius: 12px;
-            box-shadow: 0 2px 16px rgba(0,0,0,0.2);
-            max-width: 350px;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-        }
-        .orcamento-form label {
-            font-size: 1.5rem;
-            margin-bottom: -3px;
-        }
-        .orcamento-form input {
-            padding: 10px;
-            border-radius: 6px;
-            border: none;
-            font-size: 1rem;
-            width: 100%;
+            padding: 20px;
             box-sizing: border-box;
+        }
+        
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: 1200px;
+            width: 100%;
+            align-items: center;
+        }
+        
+        /* Mobile-first approach - formulário primeiro */
+        .mobile-header {
+            display: none;
+        }
+        
+        .mobile-sales-summary {
+            display: none;
+        }
+        
+        .sales-section {
+            background: rgba(0,0,0,0.85);
+            padding: 40px;
+            border-radius: 16px;
+            color: #fff;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+        
+        .logo-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo-container img {
+            max-width: 120px;
+            height: auto;
+        }
+        
+        .sales-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #be5027;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            font-family: 'Bebas Neue', cursive;
+            letter-spacing: 1px;
+        }
+        
+        .sales-subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            color: #f0f0f0;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+        
+        .sales-description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #e0e0e0;
+        }
+        
+        .benefits-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 30px;
+        }
+        
+        .benefits-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            color: #fff;
+        }
+        
+        .benefits-list li:before {
+            content: "•";
+            margin-right: 12px;
+            font-size: 1.2rem;
+        }
+        
+        .cta-text {
+            background: linear-gradient(135deg, #be5027, #be5027);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 20px;
+            border-left: 4px solid #be5027;
+        }
+        
+        .cta-text p {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #fff;
+        }
+        
+        .form-section {
+            background: rgba(255,255,255,0.95);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .form-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #333;
+            text-align: center;
+            margin-bottom: 10px;
+            font-family: 'Bebas Neue', cursive;
+        }
+        
+        .form-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .orcamento-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .orcamento-form label {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .orcamento-form input {
+            padding: 14px;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            font-size: 1rem;
             font-family: inherit;
             background: #fff;
             outline: none;
-            box-shadow: none;
-            appearance: none;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            min-width: 0;
-            max-width: 100%;
+            transition: border-color 0.3s;
         }
+        
+        .orcamento-form input:focus {
+            border-color: #35411a;
+            box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.1);
+        }
+        
         .orcamento-form button {
-            background: #25d366;
+            background: linear-gradient(135deg, #25d366, #25d366);
             color: #fff;
             border: none;
-            border-radius: 6px;
-            padding: 12px;
-            font-size: 1.2rem;
+            border-radius: 8px;
+            padding: 16px;
+            font-size: 1.3rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 10px;
         }
+        
         .orcamento-form button:hover {
-            background: #128c7e;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
         }
-        @media (max-width: 500px) {
-            .landing-content { max-width: 98vw; padding-top: 30px; padding-left: 4vw; padding-right: 4vw; }
-            .orcamento-form { padding: 18px 6px; }
+        
+        .whatsapp-icon {
+            margin-right: 8px;
+        }
+        
+        /* Layout otimizado para mobile */
+        @media (max-width: 768px) {
+            .content-wrapper {
+                grid-template-columns: 1fr;
+                gap: 0;
+                padding: 10px;
+            }
+            
+            /* Header compacto para mobile */
+            .mobile-header {
+                display: block;
+                text-align: center;
+                margin-bottom: 25px;
+            }
+            
+            .mobile-header img {
+                max-width: 100px;
+                height: auto;
+                margin-bottom: 15px;
+            }
+            
+            .mobile-title {
+                font-size: 2.2rem;
+                font-weight: 700;
+                color: #be5027;
+                text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+                font-family: 'Bebas Neue', cursive;
+                margin-bottom: 8px;
+            }
+            
+            /* Resumo de vendas compacto para mobile */
+            .mobile-sales-summary {
+                display: block;
+                background: rgba(0,0,0,0.8);
+                padding: 20px;
+                border-radius: 12px;
+                color: #fff;
+                margin-bottom: 25px;
+                text-align: center;
+            }
+            
+            .mobile-sales-summary p {
+                margin: 0 0 15px 0;
+                font-size: 1.1rem;
+                line-height: 1.4;
+            }
+            
+            .mobile-benefits {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+                justify-content: center;
+                margin-bottom: 15px;
+            }
+            
+            .mobile-benefits span {
+                background: rgba(255,215,0,0.2);
+                padding: 6px 12px;
+                border-radius: 20px;
+                font-size: 0.9rem;
+                border: 1px solid rgba(255,215,0,0.3);
+            }
+            
+            .mobile-cta-button {
+                background: linear-gradient(135deg, #be5027, #be5027);
+                color: #fff;
+                font-weight: 600;
+                padding: 12px 20px;
+                border-radius: 8px;
+                margin: 0;
+                border: none;
+                cursor: pointer;
+                font-size: 1rem;
+                font-family: inherit;
+                transition: transform 0.2s, box-shadow 0.2s;
+                width: 100%;
+            }
+            
+            .mobile-cta-button:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 15px rgba(190, 80, 39, 0.3);
+            }
+            
+            /* Esconder seção de vendas completa no mobile */
+            .sales-section {
+                display: none;
+            }
+            
+            /* Otimizar formulário para mobile */
+            .form-section {
+                padding: 25px 20px;
+                margin-bottom: 30px;
+            }
+            
+            .form-title {
+                font-size: 1.8rem;
+                margin-bottom: 8px;
+            }
+            
+            .form-subtitle {
+                font-size: 1rem;
+                margin-bottom: 25px;
+            }
+            
+            .main-container {
+                padding: 15px 10px;
+                align-items: flex-start;
+                padding-top: 30px;
+            }
+            
+            /* Seção adicional de benefícios para quem quiser ler mais */
+            .additional-info {
+                display: block;
+                background: rgba(0,0,0,0.85);
+                padding: 30px 20px;
+                border-radius: 12px;
+                color: #fff;
+                margin-top: 30px;
+            }
+            
+            .additional-info h3 {
+                font-size: 1.6rem;
+                font-weight: 700;
+                color: #be5027;
+                text-align: center;
+                margin-bottom: 20px;
+                font-family: 'Bebas Neue', cursive;
+            }
+            
+            .additional-benefits {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+            
+            .additional-benefits li {
+                display: flex;
+                align-items: center;
+                margin-bottom: 12px;
+                font-size: 1rem;
+            }
+            
+            .additional-benefits li:before {
+                content: "🔥";
+                margin-right: 10px;
+                font-size: 1.1rem;
+            }
+        }
+        
+        /* Esconder info adicional no desktop */
+        .additional-info {
+            display: none;
+        }
+        
+        /* Seção do Cardápio */
+        .menu-section {
+            background: rgba(255,255,255,0.98);
+            margin: 40px auto;
+            padding: 50px 40px;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+            max-width: 1200px;
+            width: calc(100% - 40px);
+        }
+        
+        .menu-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+            font-family: 'Bebas Neue', cursive;
+            background: linear-gradient(135deg, #be5027, #be5027);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .menu-intro {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            text-align: center;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .menu-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-top: 4px solid #be5027;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .menu-card-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+            font-family: 'Bebas Neue', cursive;
+            display: flex;
+            align-items: center;
+        }
+        
+        
+        .menu-description {
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        
+        .price-info {
+            background: linear-gradient(135deg, #be5027, #be5027);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        
+        .price-info p {
+            margin: 0;
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .extras-section {
+            margin-top: 40px;
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #333;
+            text-align: center;
+            margin-bottom: 25px;
+            font-family: 'Bebas Neue', cursive;
+        }
+        
+        .extras-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+        
+        .extra-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #35411a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 350px;
+        }
+        
+        .extra-name {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .extra-price {
+            font-weight: 700;
+            color: #35411a;
+        }
+        
+        .special-packages {
+            background: rgba(0,0,0,0.05);
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+        
+        .payment-info {
+            background: linear-gradient(135deg, #35411a, #35411a);
+            color: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .payment-info h3 {
+            margin-top: 0;
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1.8rem;
+        }
+        
+        /* Responsividade para o cardápio */
+        @media (max-width: 768px) {
+            .menu-section {
+                margin-top: 30px;
+                padding: 30px 20px;
+            }
+            
+            .menu-title {
+                font-size: 2.2rem;
+            }
+            
+            .menu-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .menu-card {
+                padding: 20px;
+            }
+            
+            .extras-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .special-packages {
+                padding: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .menu-section {
+                padding: 25px 15px;
+            }
+            
+            .menu-title {
+                font-size: 1.9rem;
+            }
+            
+            .menu-card {
+                padding: 15px;
+            }
+            
+            .menu-card-title {
+                font-size: 1.4rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .mobile-header {
+                margin-bottom: 20px;
+            }
+            
+            .mobile-title {
+                font-size: 1.9rem;
+            }
+            
+            .mobile-sales-summary {
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+            
+            .form-section {
+                padding: 20px 15px;
+            }
+            
+            .additional-info {
+                padding: 25px 15px;
+                margin-top: 25px;
+            }
         }
     </style>
 </head>
@@ -108,26 +589,218 @@
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PQ7G5FS"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-    <div class="landing-content">
-        <div class="landing-title">
-            <img src="../images/logo.png" alt="Logo Dos Greco" style="max-width: 130px; width: 100%; height: auto; display: block; margin: 0 auto;">
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <div class="main-container">
+        <div class="content-wrapper">
+            <!-- Header compacto para mobile -->
+            <div class="mobile-header">
+                <img src="../images/logo.png" alt="Logo Dos Greco">
+            </div>
+            
+            <!-- Resumo de vendas compacto para mobile -->
+            <div class="mobile-sales-summary">
+                <p><strong>Transforme teu evento em uma baita experiência gastronômica!</strong></p>
+                <div class="mobile-benefits">
+                    <span>8 anos de experiência</span>
+                    <span>Cortes premium</span>
+                    <span>Acompanhamentos autorais</span>
+                    <span>O melhor pão de alho do mundo</span>
+                </div>
+                <button class="mobile-cta-button" onclick="scrollToForm()">Vamos botar fogo! Que tu assa?!</button>
+            </div>
+            
+            <!-- Seção de vendas completa (desktop) -->
+            <div class="sales-section">
+                <div class="logo-container">
+                    <img src="../images/logo.png" alt="Logo Dos Greco">
+                </div>
+                
+                <h2 class="sales-subtitle">Transforme teu evento em uma baita experiência gastronômica!</h2>
+                
+    
+                <ul class="benefits-list">
+                    <li>8 anos de experiência</li>
+                    <li>Cortes premium</li>
+                    <li>Temperos únicos e exclusivos</li>
+                    <li>Realizamos qualquer tipo de evento</li>
+                    <li>Não se preocupe com nada, nós cuidamos de tudo!</li>
+                    <li>Ah... E o melhor pão de alho do mundo!</li>
+                </ul>
+                
+                <div class="cta-text">
+                    <p>Vamos botar fogo! Que tu assa?!</p>
+                </div>
+            </div>
+            
+            <!-- Formulário -->
+            <div class="form-section">
+                <h2 class="form-title">SOLICITE SEU ORÇAMENTO</h2>
+                <p class="form-subtitle">Preencha os dados e entre em contato</p>
+                
+                <form class="orcamento-form" id="orcamentoForm" autocomplete="off" method="POST" action="https://docs.google.com/forms/d/e/1FAIpQLSeM9IUGkU1GoQHqCNU2itYlOEPx3KI14bz1bM7XT3-I4Y4y6A/formResponse" target="hidden_iframe">
+                    <label for="nome">Nome Completo</label>
+                    <input type="text" id="nome" name="entry.1130672265" placeholder="Digite seu nome completo" required>
+                    
+                    <label for="telefone">Telefone / WhatsApp</label>
+                    <input type="tel" id="telefone" name="entry.377092704" placeholder="(XX) XXXXX-XXXX" required pattern="[0-9 ()+-]{10,16}">
+                    
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="entry.544582914" placeholder="seu@email.com" required>
+                    
+                    <button type="submit">
+                        <span class="whatsapp-icon"></span>
+                        QUERO TER UM BAITA EVENTO
+                    </button>
+                </form>
+                <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+            </div>
+            
+            <!-- Informações adicionais para mobile (opcional) -->
+            <div class="additional-info">
+                <h3>Por que escolher o Dos Greco?</h3>
+                <ul class="additional-benefits">
+                    <li>Chef especializado cuidando de tudo</li>
+                    <li>Carnes nobres e cortes premium</li>
+                    <li>Temperos únicos e exclusivos</li>
+                    <li>Apresentação de alto padrão</li>
+                    <li>Atendemos em casa, eventos e confraternizações</li>
+                    <li>Tradição gaúcha com toque moderno</li>
+                </ul>
+            </div>
         </div>
-        <div class="landing-subtitle">Solicite um orçamento personalizado para o seu evento</div>
-        <section class="form-section">
-            <form class="orcamento-form" id="orcamentoForm" autocomplete="off" method="POST" action="https://docs.google.com/forms/d/e/1FAIpQLSeM9IUGkU1GoQHqCNU2itYlOEPx3KI14bz1bM7XT3-I4Y4y6A/formResponse" target="hidden_iframe">
-                <label for="nome">Nome</label>
-                <input type="text" id="nome" name="entry.1130672265" placeholder="Seu nome" required>
-                <label for="telefone">Telefone</label>
-                <input type="tel" id="telefone" name="entry.377092704" placeholder="(XX) XXXXX-XXXX" required pattern="[0-9 ()+-]{10,16}">
-                <label for="email">E-mail</label>
-                <input type="email" id="email" name="entry.544582914" placeholder="Seu e-mail" required>
-                <button type="submit">Fale conosco</button>
-            </form>
-            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
-        </section>
     </div>
+    
+    <!-- Seção do Cardápio (independente) -->
+    <div class="menu-section">
+                <h2 class="menu-title">NOSSO CARDÁPIO</h2>
+                <p class="menu-intro">
+                    Trabalhamos com pacotes para eventos de diferentes portes, com tempo de serviço de até 3 horas. As opções podem ser servidas no formato hand food ou diretamente à mesa, em porções individuais.
+                </p>
+                
+                <!-- Cardápios Principais -->
+                <div class="menu-grid">
+                    <div class="menu-card">
+                        <h3 class="menu-card-title">ASQ</h3>
+                        <p class="menu-description">
+                            Inclui cortes como matambrito de porco à la pizza, assado de tira, short rib e vazio. Acompanha batatas Dos Greco com queijo gruyère, farofa, molhos e condimentos especiais, além de linguiça caseira, pão Dos Greco e vegetais assados na brasa.
+                            <br> <br> <strong>A partir de R$ 130/pessoa</strong></p>
+                    </div>
+                    
+                    <div class="menu-card">
+                        <h3 class="menu-card-title">ASQ BUNITO</h3>
+                        <p class="menu-description">
+                            Acrescenta paleta de cordeiro e entrecot aos cortes anteriores. Os acompanhamentos incluem purê de moranga cabotiá, batatas Dos Greco, farofa, molhos, além da linguiça, pão e vegetais na brasa.
+                            <br> <br> <br> <strong>A partir de R$ 170/pessoa</strong></p>
+                    </div>
+                    
+                    <div class="menu-card">
+                        <h3 class="menu-card-title">ASQ BUNITO CHÊ</h3>
+                        <p class="menu-description">
+                            Versão mais completa, com carré francês de cordeiro, picanha, entrecot, matambrito, assado de tira e vazio. Os acompanhamentos incluem queijo provolone com cebola caramelizada, purê de moranga, batatas Dos Greco, farofa, molhos, pão, linguiça e vegetais na brasa.
+                            <br> <br> <strong>A partir de R$ 190/pessoa</strong></p>
+                    </div>
+                </div>
+                
+                <!-- Extras -->
+                <div class="extras-section">
+                    <h3 class="section-title">Extras Opcionais</h3>
+                    <div class="extras-grid">
+                        <div class="extra-item">
+                            <span class="extra-name">Pimentões com queijo</span>
+                        </div>
+                        <div class="extra-item">
+                            <span class="extra-name">Provolone</span>
+                        </div>
+                        <div class="extra-item">
+                            <span class="extra-name">Cogumelos com gorgonzola</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sobremesas -->
+                <div class="extras-section">
+                    <h3 class="section-title">Sobremesas</h3>
+                    <div class="extras-grid">
+                        <div class="extra-item">
+                            <span class="extra-name">Zé Colmeia (redução de frutas com sorvete e mel)</span>
+                        </div>
+                        <div class="extra-item">
+                            <span class="extra-name">Romeu e Julieta (queijo brie e goiabada cascão)</span>
+                        </div>
+                        <div class="extra-item">
+                            <span class="extra-name">Panqueca com doce de leite</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Outros Pacotes -->
+                <div class="extras-section">
+                    <h3 class="section-title">Outros Pacotes</h3>
+                    <div class="menu-grid">
+                        <div class="menu-card">
+                            <h3 class="menu-card-title" style="font-size: 1.4rem;">Hã, Burguer? 🍔</h3>
+                            <p class="menu-description">
+                                Hambúrgueres artesanais com blend de costela e acém, acompanhados de ingredientes como cheddar, cebola caramelizada, bacon, molho da casa, microgreens e tomate italiano. Pães: brioche, australiano ou moranga.
+                        <br> <br> <br> <strong>A partir de R$ 45/pessoa</strong></p>
+                        </div>
+                        
+                        <div class="menu-card">
+                            <h3 class="menu-card-title" style="font-size: 1.4rem;">Boias de Panela 🍲</h3>
+                            <p class="menu-description">
+                                Receitas com sabor de casa, feitas em panelas, que nos foram transmitidas entre gerações da família. Do clássico carreteiro de charque com folhas da estação ao cremoso risoto de alho-poró com entrecot assado.
+                                <br> <br> <br> <strong>A partir de R$ 60/pessoa</strong></p>
+                        </div>
+                        
+                        <div class="menu-card">
+                            <h3 class="menu-card-title" style="font-size: 1.4rem;">Galinha Dos Greco 🐔</h3>
+                            <p class="menu-description">
+                                Sobrecoxa recheada com bacon, vegetais, queijos e requeijão, acompanhada de purê de moranga e mix de folhas.
+                                <br> <br> <br> <br> <br> <br> <strong>A partir de R$ 80/pessoa</strong></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Informações Especiais -->
+                <div class="special-packages">
+                    <h3 class="section-title">Pacotes Menores & Serviços Adicionais</h3>
+                    <div class="extras-grid">
+                        <div class="extra-item">
+                            <span class="extra-name">👥 Até 10 ou 20 pessoas</span>
+                        </div>
+                        <div class="extra-item">
+                            <span class="extra-name">👨‍💼 Garçons e copeiros</span>
+                        </div>
+                        <div class="extra-item">
+                            <span class="extra-name">🍽️ Utensílios</span>
+                        </div>
+                        <div class="extra-item">
+                            <span class="extra-name">🚗 Taxa de deslocamento</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Informações de Pagamento -->
+                <div class="payment-info">
+                    <h3>Condições de Pagamento</h3>
+                    <p><strong>50% antecipado</strong> para reservar sua data</p>
+                    <p><strong>50% restante</strong> até 24h após o evento</p>
+                    <p style="margin-top: 15px; font-size: 1.1rem;">
+                        <strong>Consulte disponibilidade e personalize sua experiência!</strong>
+                    </p>
+                </div>
+            </div>
+
     <script>
+        // Função para rolar até o formulário
+        function scrollToForm() {
+            const formSection = document.querySelector('.form-section');
+            formSection.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'center' 
+            });
+        }
+        
         document.getElementById('orcamentoForm').addEventListener('submit', function (e) {
           e.preventDefault();
         
@@ -141,16 +814,13 @@
         
           /* 2. Monta a URL do WhatsApp */
           const msg = encodeURIComponent(
-            'Buenas! Gostaria de mais informações para realizar o meu evento.'
+            'Olá! Gostaria de solicitar um orçamento!'
           );
         
           const phone = '5551999052250';
-          const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-          const zap   = isIOS
-              ? `whatsapp://send?phone=${phone}&text=${msg}`
-              : `https://wa.me/${phone}?text=${msg}`;
+          const zap = `https://wa.me/${phone}?text=${msg}`;
         
-          /* 3. Cria um link real e clica nele (mantém o “gesto do usuário”) */
+          /* 3. Cria um link real e clica nele (mantém o "gesto do usuário") */
           const a   = document.createElement('a');
           a.href    = zap;
           a.target  = '_blank';          // força sair de WebViews e aceita pop-up
